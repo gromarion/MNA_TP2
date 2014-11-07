@@ -24,13 +24,13 @@ El árbol de carpetas se ve de la siguientemanera:
 	enunciado.pdf
 	audios
 		samples_1
-			a_la_grande_le_puse_cuca_1.wav
-			a_la_grande_le_puse_cuca_2.wav
+			a_la_grande_le_puse_cuca_1_nombre_persona_1.wav
+			a_la_grande_le_puse_cuca_2_nombre_persona_2.wav
 		samples_2
-			que_mal_que_la_estoy_pasando_1.wav
-			que_mal_que_la_estoy_pasando_2.wav
+			que_mal_que_la_estoy_pasando_1_nombre_persona_1.wav
+			que_mal_que_la_estoy_pasando_2_nombre_persona_2.wav
 		samples_3
-			esta_mancha_no_se_quita_1.wav
-			esta_mancha_no_se_quita_2.wav
+			esta_mancha_no_se_quita_1_nombre_persona_1.wav
+			esta_mancha_no_se_quita_2_nombre_persona_2.wav
 
 Buon lavoro! 
