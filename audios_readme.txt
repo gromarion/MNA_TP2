@@ -15,4 +15,22 @@ Las frases pertenecientes a 'a)' irán en la carpeta 'samples_1,'en la carpeta '
 Las frases pertenecientes a 'b)' irán en la carpeta 'smples_2', en la carpeta 'audios'.
 Las frases pertenecientes a 'c)' irán en la carpeta 'samples_3', en la carpeta 'audios'.
 
+El árbol de carpetas se ve de la siguientemanera:
+
+.root
+	paper_1.pdf
+	paper_2.pdf
+	paper_3.pdf
+	enunciado.pdf
+	audios
+		samples_1
+			a_la_grande_le_puse_cuca_1.wav
+			a_la_grande_le_puse_cuca_2.wav
+		samples_2
+			que_mal_que_la_estoy_pasando_1.wav
+			que_mal_que_la_estoy_pasando_2.wav
+		samples_3
+			esta_mancha_no_se_quita_1.wav
+			esta_mancha_no_se_quita_2.wav
+
 Buon lavoro! 
