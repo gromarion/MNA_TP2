@@ -6,7 +6,7 @@
 % Parametros de salida:
 % * code = code vectors resultantes
 
-function code = vq(data,nvector)
+function code = vq(data, nvector)
     % distorsion epsilon -> determina cuanto itero
     deps = 1e-10;
     [dim, n] = size(data);
