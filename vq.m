@@ -10,6 +10,8 @@ function code = vq(data, nvector)
     % distorsion epsilon -> determina cuanto itero
     deps = 1e-10;
     [dim, n] = size(data);
+    dim
+    n
     % randomizo
     data = data(:, randperm(n));
     % code vectors
@@ -45,7 +47,8 @@ function code = vq(data, nvector)
             clus(i, clus(i, n + 1)) = l;
         end
         newdist = dist / n;
-        for k = 1 : nvector
+        clus
+        for k = 1 : nvector - 1
             m = clus(k, n + 1);
             code(:, k) = mean(data(:, clus(k, 1 : m)).').';
         end

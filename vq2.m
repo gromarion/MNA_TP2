@@ -1,4 +1,4 @@
-function VQ_data=VQ(data,I) 
+function VQ_data=vq2(data,I) 
 %VQ_data:ÏòÁ¿Á¿»¯ºóµÄÊý¾Ý 
 %data:ÊäÈëÊý¾Ý 
 %I:ÏòÁ¿»¯Âë±¾ 
