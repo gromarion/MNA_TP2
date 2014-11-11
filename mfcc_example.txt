@@ -1,1 +1,3 @@
 mfcc(snd, 8000, 25, 10, 0.97, [300, 3400], 20, 13, 22)
+
+snd = wavread('audio_file_path.wav')
