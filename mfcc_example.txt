@@ -1,2 +1,4 @@
 snd = wavread('audio_file_path.wav');
-mfcc(snd)
+CC = mfcc(snd);
+[codebook, distortion] = vq(CC, 16, 13);
+dist = meandist(CC, codebook);
