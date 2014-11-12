@@ -1,4 +1,4 @@
-function [CC, FBE, frames] = mfcc(speech)
+function CC = mfcc(speech)
 
     fs = 8000;
     Tw = 25;
