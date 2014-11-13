@@ -13,7 +13,6 @@ function user_name = recognize_speech(audio_path)
 		filename = strcat('audios/samples_1/a_la_grande_le_puse_cuca_', users{i});
 		wavreads{i} = wavread(filename);
 		codebooks{i} = vq(mfcc(wavreads{i}), 16);
-		i
 	end
 
 	min_meandist = inf;
