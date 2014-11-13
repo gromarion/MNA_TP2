@@ -16,9 +16,8 @@ function dist = meandist(data, code)
     	distances = norm(repmat(data(:, l), 1, nvector) - code, 2, 'columns');
     	[m, i] = min(distances);
     	if (m < min_value)
-    		min_value = m
-    		min_value_position = i
-    		l
+    		min_value = m;
+    		min_value_position = i;
     	end
     	dist = dist + m;
 	end
