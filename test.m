@@ -23,7 +23,7 @@ function name_result = test()
 	end
 
 	for i = 1 : length(users)
-		mancha = strcat('audios/samples_3/esta_mancha_no_se_queta_', users{i});
+		mancha = strcat('audios/samples_3/esta_mancha_no_se_quita_', users{i});
 		audio_a_testear = mancha
 		recognize_speech(mancha);
 	end
