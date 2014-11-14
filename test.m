@@ -19,12 +19,11 @@ function percentage = test()
 	printf('%d files will be used for testing...\n', total_files);
 	fflush(stdout);
 
-	[results_pasando, files_tested] = recognize_speaker(user_names, file_paths{1}, files_tested, total_files, 0, codebooks);
-	[results_mancha, files_tested] = recognize_speaker(user_names, file_paths{2}, files_tested, total_files, results_pasando, codebooks);
-	
-	pasando_percentage = results_pasando / (total_files / 2)
-	mancha_percentage = results_mancha / (total_files / 2)
-	percentage = (results_pasando + results_mancha) / total_files
+	[first_test, files_tested] = recognize_speaker(user_names, file_paths{1}, files_tested, total_files, 0, codebooks);
+	[second_test, files_tested] = recognize_speaker(user_names, file_paths{2}, files_tested, total_files, first_test, codebooks);
+
+	percentage = (first_test + second_test) / total_files;
+	printf('The test exited with a %f%% of accurracy.\n', percentage * 100);
 end
 
 function [identification_amount, files_tested] = recognize_speaker(user_names, audio_path, files_tested, total_files, previous_results, codebooks)
