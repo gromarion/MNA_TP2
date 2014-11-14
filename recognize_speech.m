@@ -1,3 +1,13 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Parametros de entrada:
+% * audio_path = ruta del archivo de audio a reconocer.
+% * nvector = codebooks de individuos obtenidos durante
+%			  el entrenamiento.
+%
+% Parametros de salida:
+% * user_name = nombre del usuario identificado por el
+%				programa de reconocimiento.
+
 function user_name = recognize_speech(audio_path, codebooks)
 	input = wavread(audio_path);
 	cepstral_coefficient_input = mfcc(input);

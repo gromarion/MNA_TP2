@@ -1,3 +1,8 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Parametros de salida:
+% * percentage = porcentaje de aciertos en
+% 				 reconocimiento de locutores.
+
 function percentage = test()
 	disp('Test program is running. Please be patient, this may take a while...');
 

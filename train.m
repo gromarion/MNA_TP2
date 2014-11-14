@@ -1,5 +1,9 @@
-function codebooks = train()
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Parametros de salida:
+% * codebooks = codebooks asociados a cada locutor
+%				involucrado en el entrenamiento.
 
+function codebooks = train()
 	codebooks = {};
 	wavreads = {};
 	users = cellstr(['facundo.wav'; 'fede_roma.wav'; 'federelli.wav'; 'german.wav'; 'Juana.wav'; 'leonardo.wav'; 'matias.wav'; 'milagros.wav'; 'sonia.wav'; 'stella.wav']);
