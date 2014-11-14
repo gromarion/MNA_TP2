@@ -1,23 +1,28 @@
 function percentage = test()
 	disp('Test program is running. Please be patient, this may take a while...');
-	
+
 	user_names = cellstr(['Facundo Alderete'; 'Federico Romarion'; 'Federico Elli'; 'German Romarion'; 'Juana Unamuno'; 'Leonardo Rivas'; 'Matias Rivas'; 'Milagros Rivas'; 'Sonia Rivas'; 'Stella Giunta']);
 	file_paths = cellstr(['audios/samples_2/que_mal_que_la_estoy_pasando_'; 'audios/samples_3/esta_mancha_no_se_quita_']);
 
+	printf('Training speech recognizer...');
+	fflush(stdout);
+	codebooks = train();;
+	printf('DONE\n');
+
 	total_files = length(user_names) * length(file_paths);
 	files_tested = 0;
-	printf('%d files are to be tested...\n', total_files);
+	printf('%d files will be used for testing...\n', total_files);
 	fflush(stdout);
 
-	[results_pasando, files_tested] = recognize_speaker(user_names, file_paths{1}, files_tested, total_files, 0);
-	[results_mancha, files_tested] = recognize_speaker(user_names, file_paths{2}, files_tested, total_files, results_pasando);
+	[results_pasando, files_tested] = recognize_speaker(user_names, file_paths{1}, files_tested, total_files, 0, codebooks);
+	[results_mancha, files_tested] = recognize_speaker(user_names, file_paths{2}, files_tested, total_files, results_pasando, codebooks);
 	
-	pasando_percentage = results_pasando /9
-	mancha_percentage = results_mancha / 9
-	percentage = (results_pasando + results_mancha) / 18
+	pasando_percentage = results_pasando / (total_files / 2)
+	mancha_percentage = results_mancha / (total_files / 2)
+	percentage = (results_pasando + results_mancha) / total_files
 end
 
-function [identification_amount, files_tested] = recognize_speaker(user_names, audio_path, files_tested, total_files, previous_results)
+function [identification_amount, files_tested] = recognize_speaker(user_names, audio_path, files_tested, total_files, previous_results, codebooks)
 	users = cellstr(['facundo.wav'; 'fede_roma.wav'; 'federelli.wav'; 'german.wav'; 'Juana.wav'; 'leonardo.wav'; 'matias.wav'; 'milagros.wav'; 'sonia.wav'; 'stella.wav']);
 	identification_amount = 0;
 
@@ -25,7 +30,7 @@ function [identification_amount, files_tested] = recognize_speaker(user_names, a
 		audio_a_testear = strcat(audio_path, users{i});
 		printf('- Testing %s\n\n', audio_a_testear);
 		fflush(stdout);
-		identification_amount = identification_amount + check_results(user_names, recognize_speech(audio_a_testear), i);
+		identification_amount = identification_amount + check_results(user_names, recognize_speech(audio_a_testear, codebooks), i);
 		files_tested = files_tested + 1;
 		show_progress(files_tested, total_files, identification_amount + previous_results);
 	end
