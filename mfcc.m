@@ -10,7 +10,7 @@ function CC = mfcc(speech)
     L = 22; % Usado como parametro para la funcion cepstral sine lifter.
 
     % Calculo de la ventana de Hamming.
-    hamming_window = @(N)0.54 - 0.46 * cos(2 * pi * [0 : N - 1].'/(N - 1));
+    hamming_window = 0.54 - 0.46 * cos(2 * pi * [0 : 160 - 1].'/(160 - 1));
 
     if(nargin ~= 1)
         error('Wrong amount of parameters. Must be 1: mfcc(speech), where speech = wavread("audio_path.wav")');
