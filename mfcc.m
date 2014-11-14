@@ -9,6 +9,7 @@ function CC = mfcc(speech)
     N = 26; % Cantidad de componentes para cada coeficiente cepstral. El enunciado solicita 26.
     L = 22; % Usado como parametro para la funcion cepstral sine lifter.
 
+    % Calculo de la ventana de Hamming.
     hamming_window = @(N)0.54 - 0.46 * cos(2 * pi * [0 : N - 1].'/(N - 1));
 
     if(nargin ~= 1)
@@ -16,12 +17,11 @@ function CC = mfcc(speech)
         return;
     end 
 
-    % Explode samples to the range of 16 bit shorts
     if(max(abs(speech)) <= 1), speech = speech * 2^15; end;
 
-    % duration de cada frame
+    % Duracion de cada frame.
     Nw = round(1E-3 * time_window * fs);
-    % solapamiento de cada frame
+    % Solapamiento de cada frame.
     Ns = round(1E-3 * frame_shift * fs);
 
     nfft = 2^nextpow2(Nw);
@@ -32,19 +32,13 @@ function CC = mfcc(speech)
     % Conversion de Mel a escala de Hertz.
     hz_scale = @(mel)(700 * exp(mel / 1127) - 700);
 
-    % Type III DCT matrix routine (see Eq. (5.14) on p.77 of [1])
     dctm = @(N, M)(sqrt(2.0 / M) * cos(repmat([0:N-1].',1,M) ...
                                        .* repmat(pi * ([1 : M] - 0.5) / M, N, 1)));
 
-    % Cepstral lifter routine (see Eq. (5.12) on p.75 of [1])
-
-
-    %% FEATURE EXTRACTION
-
-    % Preemphasis filtering (see Eq. (5.1) on p.73 of [1])
+    % Filtro de pre-enfasis.
     speech = filter([1 - alpha], 1, speech); % fvtool( [1 -alpha], 1 );
 
-    % Framing and windowing (frames as columns)
+    % Division en frames y aplicacion de ventana de Hamming.
     frames = vec2frames(speech, Nw, Ns, 'cols', hamming_window, false);
     
     % Si la cantidad de frames es impar, completo con ceros para que quede par.
@@ -54,24 +48,20 @@ function CC = mfcc(speech)
         frames = [frames eye(size(frames, 1), 1)];
     end
 
-    % Magnitude spectrum computation (as column vectors)
     MAG = abs(fft(frames,nfft,1));
 
-    % Triangular filterbank with uniformly spaced filters on mel scale
-    H = trifbank(M, K, R, fs, mel_scale, hz_scale); % size of H is M x K 
+    % Filter banks triangulares con filtros en escala de mel uniformemente espaciados
+    H = trifbank(M, K, R, fs, mel_scale, hz_scale);
 
-    % Filterbank application to unique part of the magnitude spectrum
-    FBE = H * MAG(1 : K, :); % FBE( FBE<1.0 ) = 1.0; % apply mel floor
+    FBE = H * MAG(1 : K, :);
 
-    % DCT matrix computation
+    % Calculo de la matriz de transformadas discretas (Discrete Cosine Transform)
     DCT = dctm(N, M);
 
-    % Conversion of logFBEs to cepstral coefficients through DCT
     CC =  DCT * log(FBE);
 
-    % Cepstral lifter computation
+    % Calculo del cepstral lifter
     ceplifter = @(N, L)(1 + 0.5 * L * sin(pi * [0 : N - 1] / L));
     lifter = ceplifter(N, L);
 
-    % Cepstral liftering gives liftered cepstral coefficients
     CC = diag(lifter) * CC; % ~ HTK's MFCCs
