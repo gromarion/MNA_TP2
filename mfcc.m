@@ -44,7 +44,6 @@ function CC = mfcc(speech)
     % Si la cantidad de frames es impar, completo con ceros para que quede par.
     % Ver http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/
     if fmod(length(frames), 2) == 1
-        disp('Padding uneven amount of frames with a column full of zeroes...');
         frames = [frames eye(size(frames, 1), 1)];
     end
 

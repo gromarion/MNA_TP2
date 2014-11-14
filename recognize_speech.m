@@ -26,5 +26,7 @@ function user_name = recognize_speech(audio_path)
 		end
 	end
 
-	user_name = user_names{min_codebook_index}
+	user_name = user_names{min_codebook_index};
+	printf('\t* User has been identified as %s\n\n', user_name);
+	fflush(stdout);
 end
