@@ -6,8 +6,8 @@ function user_name = recognize_speech(audio_path)
 	wavreads = {};
 	codebooks = {};
 
-	users = cellstr(['fede_roma.wav'; 'federelli.wav'; 'german.wav'; 'Juana.wav'; 'leonardo.wav'; 'mario.wav'; 'matias.wav'; 'milagros.wav'; 'sonia.wav'; 'stella.wav']);
-	user_names = cellstr(['Federico Romarion'; 'Federico Elli'; 'German Romarion'; 'Juana Unamuno'; 'Leonardo Rivas'; 'Mario Romarion'; 'Matias Rivas'; 'Milagros Rivas'; 'Sonia Rivas'; 'Stella Giunta']);
+	users = cellstr(['fede_roma.wav'; 'federelli.wav'; 'german.wav'; 'Juana.wav'; 'leonardo.wav'; 'matias.wav'; 'milagros.wav'; 'sonia.wav'; 'stella.wav']);
+	user_names = cellstr(['Federico Romarion'; 'Federico Elli'; 'German Romarion'; 'Juana Unamuno'; 'Leonardo Rivas'; 'Matias Rivas'; 'Milagros Rivas'; 'Sonia Rivas'; 'Stella Giunta']);
 
 	for i = 1 : length(users)
 		filename = strcat('audios/samples_1/a_la_grande_le_puse_cuca_', users{i});

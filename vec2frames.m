@@ -111,7 +111,7 @@ function [ frames, indexes ] = vec2frames( vec, Nw, Ns, direction, window, paddi
                 vec = [ vec; padding*ones(P,1) ];
 
             % pad with a low variance white Gaussian noise
-            elseif( isstr(padding) && strcmp(padding,'noise') ) 
+            elseif( ischar(padding) && strcmp(padding,'noise') ) 
                 vec = [ vec; 1E-6*randn(P,1) ];
 
             % pad with a specific variance white Gaussian noise
