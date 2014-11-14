@@ -3,11 +3,11 @@
 % * codebooks = codebooks asociados a cada locutor
 %				involucrado en el entrenamiento.
 
-function codebooks = train()
+function codebooks = sex_train()
 	codebooks = {};
 	wavreads = {};
-	users = cellstr(['facundo.wav'; 'fede_roma.wav'; 'federelli.wav'; 'german.wav'; 'Juana.wav'; 'leonardo.wav'; 'matias.wav'; 'milagros.wav'; 'sonia.wav'; 'stella.wav']);
-	user_names = cellstr(['Facundo Alderete'; 'Federico Romarion'; 'Federico Elli'; 'German Romarion'; 'Juana Unamuno'; 'Leonardo Rivas'; 'Matias Rivas'; 'Milagros Rivas'; 'Sonia Rivas'; 'Stella Giunta']);
+	users = cellstr(['federelli.wav'; 'Juana.wav']);
+	user_names = cellstr(['Male'; 'Female']);
 
 	total_files = length(users);
 

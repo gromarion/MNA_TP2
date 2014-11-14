@@ -1,17 +1,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Parametros de salida:
 % * percentage = porcentaje de aciertos en
-% 				 reconocimiento de locutores.
+% 				 diferenciación de sexos.
 
-function percentage = test()
-	disp('Test program is running. Please be patient, this may take a while...');
+function percentage = sex_test()
+	disp('Sex recognition test program is running. Please be patient, this may take a while...');
 
-	user_names = cellstr(['Facundo Alderete'; 'Federico Romarion'; 'Federico Elli'; 'German Romarion'; 'Juana Unamuno'; 'Leonardo Rivas'; 'Matias Rivas'; 'Milagros Rivas'; 'Sonia Rivas'; 'Stella Giunta']);
+	user_names = cellstr(['Male'; 'Male'; 'Male'; 'Male'; 'Female'; 'Male'; 'Male'; 'Female'; 'Female'; 'Female']);
 	file_paths = cellstr(['audios/samples_2/que_mal_que_la_estoy_pasando_'; 'audios/samples_1/a_la_grande_le_puse_cuca_']);
 
 	printf('Training speech recognizer...');
 	fflush(stdout);
-	codebooks = train();;
+	codebooks = sex_train();;
 	printf('DONE\n');
 
 	total_files = length(user_names) * length(file_paths);
@@ -35,7 +35,7 @@ function [identification_amount, files_tested] = recognize_speaker(user_names, a
 		audio_a_testear = strcat(audio_path, users{i});
 		printf('- Testing %s\n\n', audio_a_testear);
 		fflush(stdout);
-		identification_amount = identification_amount + check_results(user_names, recognize_speech(audio_a_testear, codebooks), i);
+		identification_amount = identification_amount + check_results(user_names, recognize_sex(audio_a_testear, codebooks), i);
 		files_tested = files_tested + 1;
 		show_progress(files_tested, total_files, identification_amount + previous_results);
 	end
